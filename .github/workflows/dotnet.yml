@@ -23,6 +23,12 @@ jobs:
     - name: Publish app
       run: dotnet publish -c Release './BlazorTry1814/BlazorTry1814.csproj'
 
+    - name: Rewrite base href
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: ${{ env.PUBLISH_DIR }}/index.html
+        base_href: /BlazorOnGitHubPages/
+
     - name: Save artifacts
       uses: actions/upload-artifact@v2
       with: 
