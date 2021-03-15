@@ -1,4 +1,4 @@
-name: .NET
+name: Build and Deploy BlazorTry1814 to GitHub Pages
 
 on:
   push:
@@ -19,7 +19,39 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+
+    - name: Publish app
+      run: dotnet publish -c Release './BlazorTry1814/BlazorTry1814.csproj'
+
+    - name: Save artifacts
+      uses: actions/upload-artifact@v2
+      with: 
+        name: myWASM
+        path: './BlazorTry1814/bin/Release/net5.0/publish/wwwroot'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create pages branch
+        continue-on-error: true
+        run: |
+          git config --global user.name "KhorAMus"
+          git config --global user.email "khoramus@yandex.ru"
+          git checkout -B pages
+      - name: Clear pages branch
+        continue-on-error: true
+        run: |
+          git rm -rf .
+          git commit --allow-empty -m "root commit"
+          git push -f origin pages
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: myWASM
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "publishing WASM"
+          git push --set-upstream origin pages
