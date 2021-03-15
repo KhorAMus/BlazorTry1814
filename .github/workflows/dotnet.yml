@@ -26,8 +26,8 @@ jobs:
     - name: Rewrite base href
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: ${{ env.PUBLISH_DIR }}/index.html
-        base_href: /BlazorOnGitHubPages/
+        html_path: ./BlazorTry1814/bin/Release/net5.0/publish/wwwroot/index.html
+        base_href: /ASP.NET-Core-5-for-Beginners/
 
     - name: Save artifacts
       uses: actions/upload-artifact@v2
