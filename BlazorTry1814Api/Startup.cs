@@ -32,6 +32,12 @@ namespace BlazorTry1814Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BlazorTry1814Api", Version = "v1" });
             });
+            services.AddCors(co =>
+            {
+                co.AddPolicy("AllowAll", cpb => cpb.AllowAnyOrigin()
+                                                   .AllowAnyMethod()
+                                                   .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +53,8 @@ namespace BlazorTry1814Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 
