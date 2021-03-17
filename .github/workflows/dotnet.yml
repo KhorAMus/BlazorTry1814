@@ -29,6 +29,13 @@ jobs:
         html_path: ./BlazorTry1814/bin/Release/net5.0/publish/wwwroot/index.html
         base_href: /BlazorTry1814/
 
+    - name: Rewrite main API address
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: '**/appsettings.json'
+      env:
+        App.ServerAddress: "https://blazortry1814api.azurewebsites.net"
+
     - name: Save artifacts
       uses: actions/upload-artifact@v2
       with: 

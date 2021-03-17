@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTry1814", "BlazorTry1814\BlazorTry1814.csproj", "{0CE66032-1701-4BA0-8F0F-33EB607CC10A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorTry1814Api", "BlazorTry1814Api\BlazorTry1814Api.csproj", "{61320B7A-8734-4280-BEA2-964975A85D29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTry1814Api", "BlazorTry1814Api\BlazorTry1814Api.csproj", "{61320B7A-8734-4280-BEA2-964975A85D29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

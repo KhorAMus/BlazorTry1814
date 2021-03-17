@@ -17,9 +17,21 @@ namespace BlazorTry1814
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            IServiceCollection services = builder.Services;
+            ConfigureServices(builder, services);
 
             await builder.Build().RunAsync();
+        }
+
+        private static void ConfigureServices(WebAssemblyHostBuilder builder, IServiceCollection services)
+        {
+            services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            services.AddSingleton(sp =>
+            {
+                var configuration = sp.GetService<IConfiguration>();
+                return configuration.GetSection("App").Get<AppConfiguration>();
+            });
         }
     }
 }
