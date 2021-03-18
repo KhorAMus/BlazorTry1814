@@ -1,13 +1,18 @@
 ﻿@page "/random"
+@using Microsoft.Extensions.Configuration;
+@inject HttpClient HttpClient
 <h1>Random generator</h1>
 
 <button class="btn btn-primary" @onclick="GenerateRandomNumber">Generate random number</button>
+<p>Generated random number: @currentRandomNumber</p>
 
 @code {
-    private int? CurrentRandomNumber = null;
+    private int? currentRandomNumber = null;
 
-    private void GenerateRandomNumber()
+    private async void GenerateRandomNumber()
     {
-
+        var randomIntegerJsonModel = await HttpClient.GetFromJsonAsync<GetRandomIntegerJsonModel>("random/integer");
+        currentRandomNumber = randomIntegerJsonModel.Value;
     }
 }
+

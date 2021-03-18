@@ -25,13 +25,11 @@ namespace BlazorTry1814
 
         private static void ConfigureServices(WebAssemblyHostBuilder builder, IServiceCollection services)
         {
-            services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-            services.AddSingleton(sp =>
-            {
-                var configuration = sp.GetService<IConfiguration>();
-                return configuration.GetSection("App").Get<AppConfiguration>();
-            });
+            var appConfiguration = new AppConfiguration();
+            services.AddSingleton(appConfiguration);
+            Uri mainApiAddress = new Uri(string.IsNullOrEmpty(appConfiguration.ServerAddress) ? builder.HostEnvironment.BaseAddress : appConfiguration.ServerAddress); 
+            services.AddScoped(sp => new HttpClient { BaseAddress = mainApiAddress });
+            
         }
     }
 }
