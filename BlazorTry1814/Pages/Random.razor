@@ -9,7 +9,7 @@
 @code {
     private int? currentRandomNumber = null;
 
-    private async void GenerateRandomNumber()
+    private async Task GenerateRandomNumber()
     {
         var randomIntegerJsonModel = await HttpClient.GetFromJsonAsync<GetRandomIntegerJsonModel>("/random/integer");
         currentRandomNumber = randomIntegerJsonModel.Value;
