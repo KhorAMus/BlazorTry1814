@@ -17,7 +17,7 @@ namespace BlazorTry1814
 #endif
             if (isDebug)
             {
-                ServerAddress = "";
+                ServerAddress = "https://localhost:44343/";
             }
             else
             {

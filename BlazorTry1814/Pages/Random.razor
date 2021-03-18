@@ -11,7 +11,7 @@
 
     private async void GenerateRandomNumber()
     {
-        var randomIntegerJsonModel = await HttpClient.GetFromJsonAsync<GetRandomIntegerJsonModel>("random/integer");
+        var randomIntegerJsonModel = await HttpClient.GetFromJsonAsync<GetRandomIntegerJsonModel>("/random/integer");
         currentRandomNumber = randomIntegerJsonModel.Value;
     }
 }
